@@ -3,8 +3,7 @@ import './App.css'
 
 export default function App(){
 
-  const [data, setData] = useState
-  ([
+  const [data, setData] = useState([
     { question: 'Каковы фундаментальные ограничения этой задачи? Отдели стереотипы от ограничений.', answer: ''},
     { question: 'Первые принципы: какие базовые факты останутся, если убрать чужие мнения?', answer: ''},
     { question: 'Единицы измерения: в каких строгих метриках оценивается успех? Переведи проблему из плоскости чувств в физические величины. ', answer: ''},
@@ -22,15 +21,12 @@ export default function App(){
   const [toShowResult, setToShowResult] = useState(false)
 
   const nextQuestion = () => {
-    if (currentIndex === data.length-1) {
       setData(data.map((item, index) => (
       index === currentIndex ? {...item, answer: textArea} : item   
     )))
+    if (currentIndex === data.length-1) {
       setToShowResult(true) 
     } else {
-    setData(data.map((item, index) => (
-      index === currentIndex ? {...item, answer: textArea} : item   
-    )))
     setTextArea('')
     setCurrentIndex(prev => prev + 1)
     }
@@ -45,15 +41,22 @@ export default function App(){
   return (
     <div className='wrapper'>
       {toShowResult ? 
-      <>
-        <div className='container'>
-          <button className='save-button' onClick={() => window.print()}>🖨️ Сохранить в PDF</button>
-          <h1>Карта декомпозиции и стресс-теста задачи</h1>
-          <ol>{data.map(item => 
-            <li><h4>{item.question}</h4><p className='report'>{item.answer}</p></li>)}
-          </ol>
-        </div>
-      </> : 
+
+      <div className='container'>
+        <button className='save-button' onClick={() => window.print()}>🖨️ Сохранить в PDF</button>
+        <h1>Карта декомпозиции и стресс-теста задачи</h1>
+        <ol>{data.map((item, index) => 
+          <li key={index}>
+            <h4>
+              {item.question}
+            </h4>
+            <p className='report'>
+              {item.answer}
+            </p>
+          </li>)}
+        </ol>
+      </div>
+      : 
       <div className='container'>
         <h2>
           {currentIndex + 1}. {data[currentIndex].question}
@@ -61,14 +64,14 @@ export default function App(){
         <textarea 
           ref={inputRef}
           className='textarea' 
-          name="" 
-          id="" 
           onChange={(e) => setTextArea(e.target.value)}
           value={textArea}
         >
         </textarea>
-        <br />
-        <button className='no-print'  onClick = {() => nextQuestion()}>{currentIndex === data.length-1 ? 'Завершить' : 'Далее'}</button>
+        <button 
+          className='no-print'  
+          onClick = {() => nextQuestion()}>{currentIndex === data.length-1 ? 'Завершить' : 'Далее'}
+        </button>
       </div>
       }
     </div>
