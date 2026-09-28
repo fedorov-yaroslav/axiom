@@ -1,0 +1,89 @@
+body{
+	font-family: "Inter", sans-serif;
+	margin: 0;
+	padding: 0;
+	background: white;
+}
+
+.wrapper {
+	margin: 0 9px;
+	padding: 0 10px;
+  min-height: 100vh; 
+  box-sizing: border-box; 
+  border-left: 1px dashed rgb(130, 128, 128);
+	border-right: 1px dashed rgb(130, 128, 128);
+}
+
+h1, h2, h3, h4{
+	font-weight: 500;
+	width: 80%;
+}
+
+h1 {
+	text-align: center;
+}
+
+.textarea {
+	font-size: 14px;
+	width: 80%;
+	height: 7rem;
+	padding: 10px;
+	border-radius: 4px;
+	resize: vertical;
+	font-family: sans-serif;
+}
+
+ol{
+	display: flex;
+	flex-direction: column;
+}
+
+.container {
+	display: flex;
+	flex-direction: column;
+	padding: 20px;
+}
+
+button {
+	max-width: 150px;
+	background: white;
+	border-radius: 4px;
+	height: auto;
+	cursor: pointer;
+	transition: 0.3s ease-in-out;
+	padding: 10px;
+}
+
+button:hover {
+	box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 
+              0 2px 4px -1px rgba(0, 0, 0, 0.06),
+              0 10px 15px -3px rgba(0, 0, 0, 0.03);
+	background: rgb(248, 248, 248)
+}
+
+@media print {
+	button,
+	.no-print {
+		display: none !important;
+	}
+}
+
+.report {
+	color: #01001f;
+	background: rgb(250, 250, 250);
+	padding: 20px;
+	border-radius: 4px;
+	transition: ease-in-out 0.3s ;
+}
+
+.report:hover {
+	box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 
+              0 2px 4px -1px rgba(0, 0, 0, 0.06),
+              0 10px 15px -3px rgba(0, 0, 0, 0.03);
+
+}
+
+.save-button {
+	position: absolute;
+	align-self: flex-end;
+}
