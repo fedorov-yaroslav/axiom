@@ -34,7 +34,7 @@ interface QuestionItem {
   const [problem, setProblem] = useState<string>(() =>
     localStorage.getItem('problem-ls') || ''
   )
-  
+
   const inputRef = useRef<HTMLTextAreaElement | null>(null)
 
   useEffect(() => {
@@ -42,6 +42,8 @@ interface QuestionItem {
     localStorage.setItem('problem-ls', problem)
     inputRef.current?.focus()
   }, [currentIndex, currentScreen, data])
+
+  const progressPercentage = Math.round((currentIndex / data.length) * 100)
 
   const changeScreen = () => {
     if (currentScreen === 'start'){
@@ -86,6 +88,7 @@ interface QuestionItem {
       {/* Screen 2: Questions */}
       {currentScreen === 'questions' && (
         <div className='container'>
+          <div className='progress-bar' style={{ width: `${progressPercentage}%` }}></div>
           <h2>
             {currentIndex + 1}. {data[currentIndex].question}
           </h2>

@@ -88,3 +88,11 @@ button:hover {
 	position: absolute;
 	align-self: flex-end;
 }
+
+.progress-bar {
+	height: 5px;
+	background: rgb(173, 243, 141);
+	border-radius: 15px;
+	transition: 0.3s ease;
+
+}
