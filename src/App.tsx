@@ -111,7 +111,7 @@ interface QuestionItem {
         <div className='container'>
           <button className='save-button no-print' onClick={() => window.print()}>🖨️ Сохранить в PDF</button>
           <h1>Карта декомпозиции и стресс-теста задачи</h1>
-          {problem && <h3 className='problem-title'>Целевая проблема: {problem}</h3>}
+          {problem && <h3>Целевая проблема: <span className='accent'>{problem}</span></h3>}
           <ul>
             {data.map((item, index) => (
               <li key={index}>
