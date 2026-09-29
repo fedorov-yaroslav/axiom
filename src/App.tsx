@@ -22,16 +22,26 @@ interface QuestionItem {
   ]
 
   export default function App(){
-  const [data, setData] = useState<QuestionItem[]>(INITIAL_QUESTIONS)
+  const [data, setData] = useState<QuestionItem[]>(() => 
+    localStorage.getItem('questions-ls') 
+      ? JSON.parse(localStorage.getItem('questions-ls')!) 
+      : INITIAL_QUESTIONS
+  )
+
   const [currentIndex, setCurrentIndex] = useState(0)
   const [textArea, setTextArea] = useState('')
   const [currentScreen, setCurrentScreen] = useState<ScreenType>('start')
-  const [problem, setProblem] = useState('')
+  const [problem, setProblem] = useState<string>(() =>
+    localStorage.getItem('problem-ls') || ''
+  )
+  
   const inputRef = useRef<HTMLTextAreaElement | null>(null)
 
   useEffect(() => {
+    localStorage.setItem('questions-ls', JSON.stringify(data))
+    localStorage.setItem('problem-ls', problem)
     inputRef.current?.focus()
-  }, [currentIndex, currentScreen])
+  }, [currentIndex, currentScreen, data])
 
   const changeScreen = () => {
     if (currentScreen === 'start'){
