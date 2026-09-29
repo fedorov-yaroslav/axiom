@@ -90,7 +90,7 @@ interface QuestionItem {
         <div className='container'>
           <div className='progress-bar' style={{ width: `${progressPercentage}%` }}></div>
           <h2>
-            {currentIndex + 1}. {data[currentIndex].question}
+            {currentIndex + 1}/{data.length} {data[currentIndex].question}
           </h2>
           <textarea 
             ref={inputRef}
@@ -112,14 +112,14 @@ interface QuestionItem {
           <button className='save-button no-print' onClick={() => window.print()}>🖨️ Сохранить в PDF</button>
           <h1>Карта декомпозиции и стресс-теста задачи</h1>
           {problem && <h3 className='problem-title'>Целевая проблема: {problem}</h3>}
-          <ol>
+          <ul>
             {data.map((item, index) => (
               <li key={index}>
                 <h4>{item.question}</h4>
                 <p className='report'>{item.answer}</p>
               </li>
             ))}
-          </ol>
+          </ul>
         </div>
       )}
 
